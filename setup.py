@@ -14,6 +14,7 @@ requirements = [
     'Django>=1.7',
     'celery==3.1.23',
     'django-celery==3.1.17',
+    'djangorestframework==3.0.0',
 ]
 
 
