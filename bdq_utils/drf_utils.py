@@ -1,3 +1,5 @@
+from rest_framework import generics, mixins
+
 class CustomReturnSerializerGenericAPIView(generics.GenericAPIView):
 
     def get_return_serializer(self, *args, **kwargs):
