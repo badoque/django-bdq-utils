@@ -28,6 +28,8 @@ class CustomReturnSerializerUpdateModelMixin(mixins.UpdateModelMixin):
 
     def update(self, request, *args, **kwargs):
         super(CustomReturnSerializerUpdateModelMixin, self).update(request, *args, **kwargs)
+        
+        instance = self.get_object()
         return_serializer = self.get_return_serializer(instance)
         
         if (return_serializer_class != None):
