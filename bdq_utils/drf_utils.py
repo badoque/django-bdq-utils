@@ -27,15 +27,15 @@ class CustomReturnSerializerGenericAPIView(generics.GenericAPIView):
 class CustomReturnSerializerUpdateModelMixin(mixins.UpdateModelMixin):
 
     def update(self, request, *args, **kwargs):
-        super(CustomReturnSerializerUpdateModelMixin, self).update(request, *args, **kwargs)
-        
+        original_response = super(CustomReturnSerializerUpdateModelMixin, self).update(request, *args, **kwargs)
+
         instance = self.get_object()
         return_serializer = self.get_return_serializer(instance)
         
-        if (return_serializer_class != None):
-            return Response(return_serializer_class.data)
+        if (return_serializer != None):
+            return Response(return_serializer.data)
         else:
-            return Response(serializer.data)
+            return original_response
 
     def perform_update(self, serializer):
         return serializer.save()
