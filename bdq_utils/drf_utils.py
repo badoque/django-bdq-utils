@@ -46,7 +46,7 @@ class CustomReturnSerializerUpdateModelMixin(mixins.UpdateModelMixin):
 class CustomReturnSerializerCreateModelMixin(mixins.CreateModelMixin):
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         instance = self.perform_create(serializer)
 
