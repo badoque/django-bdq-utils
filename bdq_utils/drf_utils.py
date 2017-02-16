@@ -41,6 +41,9 @@ class CustomReturnSerializerUpdateModelMixin(mixins.UpdateModelMixin):
             return Response(return_serializer.data)
         else:
             return Response(serializer.data)
+        
+    def perform_update(self, serializer):
+        return serializer.save()
 
 
 class CustomReturnSerializerCreateModelMixin(mixins.CreateModelMixin):
@@ -56,4 +59,7 @@ class CustomReturnSerializerCreateModelMixin(mixins.CreateModelMixin):
             return Response(return_serializer.data)
         else:
             return Response(serializer.data)
+        
+    def perform_create(self, serializer):
+        return serializer.save()
 
