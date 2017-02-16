@@ -42,5 +42,18 @@ class CustomReturnSerializerUpdateModelMixin(mixins.UpdateModelMixin):
         else:
             return Response(serializer.data)
 
-    def perform_update(self, serializer):
-        return serializer.save()
+
+class CustomReturnSerializerCreateModelMixin(mixins.CreateModelMixin):
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+
+        return_serializer = self.get_return_serializer(instance)
+        
+        if (return_serializer != None):
+            return Response(return_serializer.data)
+        else:
+            return Response(serializer.data)
+
