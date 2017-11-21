@@ -17,7 +17,7 @@ class AbstractListMerger:
                 ' defined in the ListMerger class')
 
         if not hasattr(instance, self.list_attr_name):
-            raise TypeError(type(instance).__name__+' does not have an attribute named \''+ self.list_attr_name +'\'')
+            raise AttributeError(type(instance).__name__+' does not have an attribute named \''+ self.list_attr_name +'\'')
 
         old_itens = list(getattr(instance, self.list_attr_name).all())
         old_itens_ids = [i.id for i in list(getattr(instance, self.list_attr_name).all())]
